@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href='{% static "css/login_style.css"%}'>
+
+
+<div id="wrapper">
+
+	<form name="login-form" class="login-form" action="/login/" method="post">
+		{% csrf_token%}
+		<div class="header">
+			<h1>Login Form</h1>
+			<span>Fill out the form below to login to my super awesome imaginary control panel.</span>
+		</div>
+	
+		<div class="content">
+			
+			<input name="email" type="email" class="input email" id="id_email" placeholder="Email" />
+			
+			{% if form.emails.errors%}
+			<h5 style="color:red">{{ form.emails.errors.as_text}}</h5>
+			{% elif form.non_field_errors  %}
+			<h5 style="color:red">{{ form.non_field_errors.as_text}}</h5>
+			{% endif %}
+			
+			<div class="user-icon">
+			</div>
+			
+			<input name="password" type="password" class="input password" id="id_password" placeholder="Password" />
+			{% if form.password.errors%}
+			<h5 style="color:red">{{ form.password.errors.as_text}}</h5>
+			{% elif error_message  %}
+			<h5 style="color:red">{{ error_message}}</h5>
+			{% endif %}
+			
+			<div class="pass-icon">
+			</div>		
+		</div>
+
+		<div class="footer">
+			<input type="submit" name="submit" value="Login" class="button" />
+			<a href="/login/forget-password/">Forget Password</a>
+		</div>
+	
+	</form>
+
+</div>
+<div class="gradient">
+</div>
